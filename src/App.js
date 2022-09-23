@@ -1,28 +1,39 @@
 import './App.css';
-import Testimonio from './componentes/Testimonio.js'
+import freeCodeCampLogo from './imagenes/sodig-sin-fondo.png'
+import Boton from './componentes/Boton';
+import Contador from './componentes/Contador';
+import { useState } from 'react';
 
 function App() {
+
+  const [numClics,setNumClics]= useState(0);
+
+  const manejarClic = () =>{
+    setNumClics(numClics + 1);
+  }
+
+  const reiniciarContador = () =>{
+    setNumClics(0);
+  };
+
   return (
-    <div className="App">
+    <div className='App'>
+      <div className='freecodecamp-logo-contenedor'>
+        <img
+        className='freecodecamp-logo'
+        src={freeCodeCampLogo}
+        alt='Logo de freeCodeCamp' />
+      </div>
       <div className='contenedor-principal'>
-        <h1>Este es el título</h1>
-        <Testimonio 
-        nombre='Andres'
-        pais='Ecuador'
-        imagen='azul'
-        cargo='Arquitecto'
-        empresa='Sodig'
-        testimonio='este es mi testimonio 
-        qqqqqqqqqqqqqqqqqqqqqqqqq qqqqqqqqqqqsssssssssssssssssssssssssssssssssssssssssssssssss ssssssssssssssssssssss sssssssssssssssssssssss ssssssssssssssssssssss sssssssssssssss'/>
-      
-      <Testimonio 
-        nombre='Andres'
-        pais='Ecuador'
-        imagen='blanco'
-        cargo='Arquitecto'
-        empresa='Sodig'
-        testimonio='este es mi testimonio 
-        qqqqqqqqqqqqqqqqqqqqqqqqq qqqqqqqqqqqsssssssssssssssssssssssssssssssssssssssssssssssss ssssssssssssssssssssss sssssssssssssssssssssss ssssssssssssssssssssss sssssssssssssss'/>
+        <Contador numClics={numClics} />
+        <Boton
+          texto='Clic'
+          esBotonDeClic={true}
+          manejarClic={manejarClic}/>
+        <Boton
+          texto='Reiniciar'
+          esBotonDeClic={false}
+          manejarClic={reiniciarContador}/>
       </div>
     </div>
   );
